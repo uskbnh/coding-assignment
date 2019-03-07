@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-import MyList from './components/MyList';
-import Recommendations from './components/Recommendations';
+import Lists from './components/Lists';
 
 import './App.css';
 import logo from './images/logo.png';
@@ -14,9 +13,9 @@ class App extends Component {
                <img className='Logo' src={logo} alt='Netflex'/>
             </header>
             <div className="AppList">
-               <MyList />
+               <Lists functionality='MyList'/>
                <hr />
-               <Recommendations />
+               <Lists functionality='Recommendations' />
             </div>
          </div>
       );
