@@ -1,4 +1,9 @@
-.App {
+.Logo {
+  max-width: 150px;
+  margin: 5px
+}
+
+.AppList {
   position: fixed;
-  bottom: 0
+  bottom: 0;
 }
