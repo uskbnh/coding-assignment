@@ -37,24 +37,27 @@ const initState = {
 
 const reducer = (state = initState, action) => {
     let newMyList = null;
+    let newRecommendations = null;
     switch (action.type) {
         case 'ADD':
             newMyList = [...state.mylist];
-            let thisItem = state.recommendations.filter(item => item.id === action.payload.id)[0];
-            if(newMyList.some(item => item.id === thisItem.id)){
-            } else {
-                newMyList.push(thisItem);
-            }
+            newRecommendations = [...state.recommendations];
+            let addItem = state.recommendations.filter(item => item.id === action.payload.id)[0];
+            newMyList.push(addItem);
+            newRecommendations = newRecommendations.filter(item => item.id !== action.payload.id);
             return {
-                ...state,
+                'recommendations':newRecommendations,
                 'mylist':newMyList
             }
 
         case 'DEL':
             newMyList = [...state.mylist];
+            newRecommendations = [...state.recommendations];
             newMyList = newMyList.filter(item => item.id !== action.payload.id);
+            let returnItem = state.mylist.filter(item => item.id === action.payload.id)[0];
+            newRecommendations.push(returnItem);
             return {
-                ...state,
+                'recommendations':newRecommendations,
                 'mylist':newMyList
             }
         default:
