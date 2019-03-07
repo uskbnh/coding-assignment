@@ -6,3 +6,12 @@
 .item {
     margin: 5px
 }
+
+.btn {
+    display: none;
+    width: 100%;
+}
+
+.item:hover .btn{
+    display: block;
+}

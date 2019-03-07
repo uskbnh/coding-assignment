@@ -5,16 +5,9 @@ import './Lists.css'
 class MyList extends React.Component{
     constructor(props){
         super(props);
-        this.state = {dispList:[]}
+        this.state = {}
     }
 
-    onHoverHandler(id){
-        if(this.state.dispList.indexOf(id) === -1){
-            let tempList = [...this.state.dispList];
-            tempList.push(id);
-            this.setState({dispList:tempList});
-        }
-    }
 
     render(){
         return (
@@ -22,18 +15,16 @@ class MyList extends React.Component{
                 <div>MyList:</div>
                 <div className='list'>
                     {this.props.mylist.map((list,index)=>{
-                        let btn = null;
-                        if(this.state.dispList.indexOf(list.id) > -1){
-                            btn = <button onClick={() => this.props.onDel(list.id)}>Delete</button>
-                        }
                         return (
                             <div className='item' key={list.id}>
-                                <img 
-                                    className='hoverImg' 
-                                    src={list.img} 
-                                    alt={list.id} 
-                                    onMouseEnter={() => this.onHoverHandler(list.id)}/>
-                                <div>{btn}</div>
+                                <img src={list.img} alt={list.id}/>
+                                <div>
+                                    <button
+                                        className='btn'  
+                                        onClick={() => this.props.onDel(list.id)}>
+                                        Delete
+                                    </button>
+                                </div>
                                 <div>{list.title}</div>
                             </div>)
                     })}
