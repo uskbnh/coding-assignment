@@ -3,6 +3,14 @@ const initState = {
     'recommendations':[]
 }
 
+const addElement = (fromarr, toarr, id) => {
+    return toarr.concat(fromarr.filter(item => item.id === id)[0])
+}
+
+const delElement = (arr, id) => {
+    return arr.filter(item => item.id !== id)
+}
+
 const reducer = (state = initState, action) => {
     switch (action.type) {
          case 'INIT':
@@ -10,14 +18,14 @@ const reducer = (state = initState, action) => {
          
          case 'ADD':
             return {
-                'recommendations':state.recommendations.filter(item => item.id !== action.payload.id),
-                'mylist':state.mylist.concat(state.recommendations.filter(item => item.id === action.payload.id)[0])
+                'recommendations': delElement(state.recommendations, action.payload.id),
+                'mylist': addElement(state.recommendations,state.mylist,action.payload.id)
             }
 
          case 'DEL':
             return {
-                'recommendations':state.recommendations.concat(state.mylist.filter(item => item.id === action.payload.id)[0]),
-                'mylist':state.mylist.filter(item => item.id !== action.payload.id)
+                'recommendations': addElement(state.mylist,state.recommendations,action.payload.id),
+                'mylist': delElement(state.mylist, action.payload.id)
             }
         default:
             return state;
