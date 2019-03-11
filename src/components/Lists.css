@@ -8,10 +8,10 @@
 }
 
 .btn {
-    display: none;
+    visibility: hidden;
     width: 100%;
 }
 
 .item:hover .btn{
-    display: block;
+    visibility: visible;
 }

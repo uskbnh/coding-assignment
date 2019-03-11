@@ -6,4 +6,6 @@
 .AppList {
   position: fixed;
   bottom: 0;
+  font-weight: bold;
+  font-size: larger;
 }
